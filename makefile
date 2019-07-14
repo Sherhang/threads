@@ -12,7 +12,7 @@ CFLAGS += -g
 
 all:$(target)
 
-$(target):%:%.o   	#用模式规则对每个独立的目标进行编译
+$(target):%:%.cpp   	#用模式规则对每个独立的目标进行编译
 	$(CXX) $(INCS) $(CFLAGS) $^ -o $@ $(LIBS)
 %.o:%.cpp 
 	$(CXX) $(INCS) $(CFLAGS) -c $^ -o $@ $(LIBS)
