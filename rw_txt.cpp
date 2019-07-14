@@ -1,5 +1,7 @@
 /*文本加密
- * demo:
+ *该文件用于测试读写文件使用多线程的效果，生成文件放在.file文件夹，为.c文件，加密部分已经被注释掉了
+ *运行时只需执行shell脚本
+demo:
  *       ./rw_txt.sh
  */
 #include <iostream>
@@ -108,10 +110,7 @@ int main (int argc,char* argv[])
 	
 	double tp=(clock()-t1)/1000.0;
 	cout<<"普通函数执行时间："<<tf<<"ms"<<endl;
-	cout<<"线程执行时间："<<tp<<"ms"<<endl;
-        pthread_exit(NULL);
-        cout<<"线程执行时间："<<tp-5000<<"ms"<<endl;
-
-
+        pthread_exit(NULL);//线程退出，此时主函数也返回了。
+        return 0;
 }
 	
