@@ -31,9 +31,9 @@ void rw1(string &f0,string& f1)
 	
 	while(getline(file0,s))//逐行读取数据并存于s中，直至数据全部读取
 	{
-//        for(size_t i=0;i<s.size();i++)
-//			s[i]=s[i]+1;
-//		reverse(s.begin(),s.end());
+        for(size_t i=0;i<s.size();i++)
+			s[i]=s[i]+1;
+		reverse(s.begin(),s.end());
 		in<<s<<endl;
 	}
 	return ;
@@ -58,9 +58,9 @@ void rw2(string &f0,string & f1)
 	
 	while(getline(file0,s))//逐行读取数据并存于s中，直至数据全部读取
 	{
-//        reverse(s.begin(),s.end());
-//		for(size_t i=0;i<s.size();i++)
-//			s[i]=s[i]-1;
+        reverse(s.begin(),s.end());
+		for(size_t i=0;i<s.size();i++)
+			s[i]=s[i]-1;
 		in<<s<<endl;
 	}
 	return ;
@@ -72,7 +72,7 @@ void* rw2(void* arg)
         string f1=*(file_ptr->file_w2_ptr);
         cout<<"read "<<f0<<endl;
         cout<<"write " <<f1<<endl;
-        rw1(f0,f1);
+        rw2(f0,f1);
         return NULL;
 }
 
