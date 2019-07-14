@@ -84,10 +84,10 @@ int main (int argc,char* argv[])
 	string f0=argv[1];
 	string f1=argv[2];
         string f2=argv[3];
-        dString* file_in_out=new dString;
-        file_in_out->file_r_ptr=&f0;
-        file_in_out->file_w1_ptr=&f1;
-        file_in_out->file_w2_ptr=&f2;
+        struct dString file_in_out;//这个结构用于传参
+        file_in_out.file_r_ptr=&f0;
+        file_in_out.file_w1_ptr=&f1;
+        file_in_out.file_w2_ptr=&f2;
 
 	int t1=clock();
         string f11="./file/对比1.c";
@@ -97,20 +97,22 @@ int main (int argc,char* argv[])
 	double tf=(clock()-t1)/1000.0;
 	
 	t1=clock();
-	int rc1=pthread_create(&thread1,NULL,rw1,file_in_out);
+	int rc1=pthread_create(&thread1,NULL,rw1,(void*)(&file_in_out));
 	if (rc1){                
          cout << "Error:无法创建线程1," << rc1 << endl;
          exit(-1);
       }   
-	int rc2=pthread_create(&thread2,NULL,rw2,file_in_out);
+	int rc2=pthread_create(&thread2,NULL,rw2,&file_in_out);//最好像上面那样用类型转换
 	if (rc2){                
          cout << "Error:无法创建线程2," << rc2 << endl;
          exit(-1);
       }   
-	
-	double tp=(clock()-t1)/1000.0;
+        	
+	double tp=(clock()-t1)/1000.0;//这样测试线程时间是不准的
 	cout<<"普通函数执行时间："<<tf<<"ms"<<endl;
-        pthread_exit(NULL);//线程退出，此时主函数也返回了。
+
+        cout<<"main退出。"<<endl;
+        pthread_exit(NULL);
         return 0;
 }
 	
