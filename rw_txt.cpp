@@ -31,6 +31,7 @@ void rw1(string &f0,string& f1)
 	
 	while(getline(file0,s))//逐行读取数据并存于s中，直至数据全部读取
 	{
+            cout<<s<<endl;
         for(size_t i=0;i<s.size();i++)
 			s[i]=s[i]+1;
 		reverse(s.begin(),s.end());
@@ -58,6 +59,7 @@ void rw2(string &f0,string & f1)
 	
 	while(getline(file0,s))//逐行读取数据并存于s中，直至数据全部读取
 	{
+            cout<<1;
         reverse(s.begin(),s.end());
 		for(size_t i=0;i<s.size();i++)
 			s[i]=s[i]-1;
